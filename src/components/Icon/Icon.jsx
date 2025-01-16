@@ -1,8 +1,15 @@
-const Icon = ({ id, width = 32, height = 32, className }) => {
+import css from "./Icon.module.css";
+
+const Icon = ({ text, icon }) => {
   return (
-    <svg className={className} width={width} height={height}>
-      <use href={`/src/components/img/icons/sprite.svg#${id}`}></use>
-    </svg>
+    <div className={css.conteiner}>
+      <svg width="32" height="32">
+        <use
+          href={`../../../../public/images/icon/icon.svg#icon-${icon}`}
+        ></use>
+      </svg>
+      <p className={css.text}>{text}</p>
+    </div>
   );
 };
 

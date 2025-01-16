@@ -1,78 +1,93 @@
-import { useDispatch } from "react-redux";
-import {
-  selectBodyType,
-  selectFeatures,
-  selectLocation,
-} from "../../redux/filters/selectors";
-import {
-  clearFilter,
-  setBodyType,
-  setLocation,
-  toggleFeature,
-} from "../../redux/filters/slice";
-import VehicleEquipment from "../VehicleEquipment/VehicleEquipment";
-import VehicleType from "../VehicleType/VehicleType";
-import Icon from "../Icon/Icon";
-import Button from "../Button/Button";
+import { Field, Form, Formik } from "formik";
 import css from "./FilterForm.module.css";
-import { useSelector } from "react-redux";
-import { createFilterObject } from "../../services/services";
+import Icon from "../Icon/Icon";
+import { useDispatch } from "react-redux";
+import { filtersChange } from "../../redux/filters/filtersSlice";
 
-const FilterForm = ({ handleFilterSubmit }) => {
+function FilterForm() {
+  const initialValues = {
+    location: "",
+    equipment: [],
+    type: "",
+  };
+
   const dispatch = useDispatch();
-  const features = useSelector(selectFeatures);
-  const bodyType = useSelector(selectBodyType);
-  const location = useSelector(selectLocation);
 
-  const handleLocationChange = (e) => {
-    dispatch(setLocation(e.target.value));
-  };
-
-  const handleBodyTypeChange = (value) => {
-    dispatch(setBodyType(value));
-  };
-
-  const handleFeatureChange = (checked, feature) => {
-    dispatch(toggleFeature(feature));
-  };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    dispatch(clearFilter());
-    const filters = createFilterObject({
-      location,
-      bodyType,
-      features,
-    });
-    handleFilterSubmit(filters);
+  const handleSubmit = (values, actions) => {
+    dispatch(filtersChange(values));
+    actions.resetForm();
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className={css.location}>
-        <span className={css.textLocation}>Location</span>
-        <label key="location">
-          <input
-            className={css.inputLocation}
-            type="text"
-            placeholder="City"
-            name="location"
-            value={location}
-            onChange={handleLocationChange}
-          />
-          <Icon
-            className={css.iconLocation}
-            id="location"
-            width={20}
-            height={20}
-          />
-        </label>
-      </div>
-      <p className={css.textFilters}>Filters</p>
-      <VehicleEquipment features={features} onChange={handleFeatureChange} />
-      <VehicleType bodyType={bodyType} onChange={handleBodyTypeChange} />
-      <Button name="Search" type="submit" />
-    </form>
+    <>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        <Form className={css.conteiner}>
+          <h3 className={css.h3}>Location</h3>
+          <div className={css.locationConteiner}>
+            <Field
+              className={css.fieldLocation}
+              type="text"
+              name="location"
+              placeholder="Kyiv, Ukraine"
+            />
+            <img
+              src="../../../public/images/icon/Map.svg"
+              alt="map"
+              className={css.locationIcon}
+            />
+          </div>
+
+          <h3 className={css.h3}>Filters</h3>
+
+          <h2 className={css.h2}>Vehicle equipment</h2>
+          <hr className={css.hr} />
+          <div className={css.equipmentConteiner}>
+            <label>
+              <Field type="checkbox" name="equipment" value="ac" />
+              <Icon text={"AC"} icon={"wind"} />
+            </label>
+            <label>
+              <Field type="checkbox" name="equipment" value="automatic" />
+              <Icon text={"Automatic"} icon={"selector"} />
+            </label>
+            <label>
+              <Field type="checkbox" name="equipment" value="kitchen" />
+              <Icon text={"Kitchen"} icon={"cup"} />
+            </label>
+            <label>
+              <Field type="checkbox" name="equipment" value="tv" />
+              <Icon text={"TV"} icon={"tv"} />
+            </label>
+            <label>
+              <Field type="checkbox" name="equipment" value="bathroom" />
+              <Icon text={"Bathroom"} icon={"shower"} />
+            </label>
+          </div>
+
+          <h2 className={css.h2}>Vehicle type</h2>
+          <hr className={css.hr} />
+          <div className={css.typeConteiner}>
+            <label>
+              <Field type="radio" name="type" value="van" />
+              <Icon text={"Van"} icon={"grid-1x2"} />
+            </label>
+            <label>
+              <Field type="radio" name="type" value="fully integrated" />
+              <Icon text={"Fully Integrated"} icon={"grid"} />
+            </label>
+            <label>
+              <Field type="radio" name="type" value="Alcove" />
+              <Icon text={"Alcove"} icon={"grid-3x3"} />
+            </label>
+          </div>
+
+          <button className={css.formButton} type="submit">
+            Search
+          </button>
+        </Form>
+      </Formik>
+    </>
   );
-};
+}
 
 export default FilterForm;
