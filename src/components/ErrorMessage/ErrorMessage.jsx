@@ -3,23 +3,23 @@ import { Toaster, toast } from "react-hot-toast";
 
 const ErrorMessage = ({ message }) => {
   useEffect(() => {
-    toast(message, {
-      style: {
-        border: "1px solid #1976d2",
-        padding: "16px",
-        color: "#1976d2",
-      },
-      iconTheme: {
-        primary: "#1976d2",
-        secondary: "#FFFAEE",
-      },
-    });
+    if (message) {
+      toast.error(message, {
+        style: {
+          border: "1px solid #1976d2",
+          padding: "16px",
+          color: "#1976d2",
+          borderRadius: "8px",
+        },
+        iconTheme: {
+          primary: "#1976d2",
+          secondary: "#FFFAEE",
+        },
+      });
+    }
   }, [message]);
-  return (
-    <div>
-      <Toaster position="top-center" reverseOrder={true} />
-    </div>
-  );
+
+  return <Toaster position="top-center" reverseOrder={false} />;
 };
 
 export default ErrorMessage;

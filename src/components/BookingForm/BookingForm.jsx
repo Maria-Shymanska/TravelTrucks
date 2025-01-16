@@ -20,11 +20,19 @@ const BookingForm = () => {
     bookingDate: Yup.date()
       .required("Required")
       .min(new Date(), "Date must be in the future"),
+    comment: Yup.string()
+      .max(500, "Comment must not exceed 500 characters")
+      .matches(/^[a-zA-Z0-9 .,!?]*$/, "Comment contains invalid characters"),
   });
 
   const handleSubmit = (values, { resetForm }) => {
+    const formattedValues = {
+      ...values,
+      bookingDate: values.bookingDate.toISOString(), // Формат ISO для дати
+    };
+
     toast.success("Camper successfully booked!");
-    console.log(values);
+    console.log(formattedValues);
 
     resetForm();
   };
