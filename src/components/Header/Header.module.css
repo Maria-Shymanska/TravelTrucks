@@ -1,39 +1,52 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 21px 64px;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 450px;
+  border-bottom: 1px solid var(--badges);
+  padding: 24px 64px;
+  /* max-width: 1440px; */
+  height: 72px;
+  background: var(--inputs);
+}
+
+.logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .nav {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 32px;
 }
 
-.navLink {
-  font-size: 18px;
-
-  line-height: 150%;
-  text-decoration: none;
-  color: black;
+.link {
   font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--main);
+  text-decoration: none;
   transition: color 0.3s ease;
 }
-.navLinkActive {
-  font-size: 18px;
 
-  line-height: 150%;
-  text-decoration: none;
+.link:hover,
+.link:focus {
   color: var(--button-hover);
-  font-weight: 500;
-  transition: color 0.3s ease;
 }
-.navLink:hover {
+
+.link.active {
   color: var(--button-hover);
 }

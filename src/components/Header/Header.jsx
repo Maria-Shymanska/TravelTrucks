@@ -1,19 +1,20 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import css from "./Header.module.css";
-import logo from "../../components/img/logo/logo.svg"; // імпортуємо SVG файл
+import logo from "../img/logo/logo.svg";
+
 const Header = () => {
   return (
     <header className={css.header}>
-      <div>
-        <Link to="/">
-          <img src={logo} alt="Logo" className={css.logo} />
-        </Link>
+      <div className={css.container}>
+        <NavLink to="/" className={css.logo}>
+          <img src={logo} alt="TravelTrucks Logo" />
+        </NavLink>
         <nav className={css.nav}>
           <NavLink
             to="/"
             className={({ isActive }) =>
-              isActive ? `${css.navLink} ${css.navLinkActive}` : css.navLink
+              isActive ? `${css.link} ${css.active}` : css.link
             }
           >
             Home
@@ -21,7 +22,7 @@ const Header = () => {
           <NavLink
             to="/catalog"
             className={({ isActive }) =>
-              isActive ? `${css.navLink} ${css.navLinkActive}` : css.navLink
+              isActive ? `${css.link} ${css.active}` : css.link
             }
           >
             Catalog
