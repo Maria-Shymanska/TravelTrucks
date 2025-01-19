@@ -1,14 +1,22 @@
+import CampersList from "../../components/CampersList/CampersList.jsx";
+import Filters from "../../components/Filters/Filters.jsx";
 import css from "./CatalogPage.module.css";
-import FilterForm from "../../components/FilterForm/FilterForm";
-import CamperList from "../../components/CamperList/CamperList";
+import { useDispatch } from "react-redux";
+import { clearCampers, resetPage } from "../../redux/campers/slice.js";
+import { getCampers, getLocations } from "../../redux/campers/operations.js";
 
-function CatalogPage() {
+const CatalogPage = () => {
+  const dispatch = useDispatch();
+  dispatch(resetPage());
+  dispatch(clearCampers());
+  dispatch(getCampers());
+  dispatch(getLocations());
   return (
-    <div className={css.conteiner}>
-      <FilterForm />
-      <CamperList />
+    <div className={css.catalog_container}>
+      <Filters />
+      <CampersList />
     </div>
   );
-}
+};
 
 export default CatalogPage;

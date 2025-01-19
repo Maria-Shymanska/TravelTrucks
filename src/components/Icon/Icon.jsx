@@ -1,15 +1,19 @@
-import css from "./Icon.module.css";
+import sprite from "../img/icons/sprite.svg";
 
-const Icon = ({ text, icon }) => {
+const Icon = ({ onClick, id, fill, size, className, stroke, ...props }) => {
   return (
-    <div className={css.conteiner}>
-      <svg width="32" height="32">
-        <use
-          href={`../../../../public/images/icon/icon.svg#icon-${icon}`}
-        ></use>
-      </svg>
-      <p className={css.text}>{text}</p>
-    </div>
+    <svg
+      onClick={onClick}
+      className={`${className || ""}`.trim()}
+      width={size}
+      height={size}
+      {...props}
+    >
+      <use
+        xlinkHref={`${sprite}#${id}`}
+        style={{ fill: fill, stroke: stroke }}
+      />
+    </svg>
   );
 };
 

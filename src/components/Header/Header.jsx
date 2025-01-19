@@ -1,32 +1,34 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
 import css from "./Header.module.css";
-import clsx from "clsx";
-
+import logo from "../../components/img/logo/logo.svg"; // імпортуємо SVG файл
 const Header = () => {
-  const buildLinkClass = ({ isActive }) => {
-    return clsx(css.navItemLink, isActive && css.active);
-  };
-
   return (
-    <div className={css.container}>
-      <Link to={"/"} className={css.logo}>
-        <img src="../../../public/hero/hero.jpg" alt="TravelTrucks" />
-      </Link>
-      <nav className={css.nav}>
-        <ul className={css.navList}>
-          <li className={css.navItem}>
-            <NavLink className={buildLinkClass} to={"/"}>
-              Home
-            </NavLink>
-          </li>
-          <li className={css.navItem}>
-            <NavLink className={buildLinkClass} to={"/catalog"}>
-              Catalog
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    </div>
+    <header className={css.header}>
+      <div>
+        <Link to="/">
+          <img src={logo} alt="Logo" className={css.logo} />
+        </Link>
+        <nav className={css.nav}>
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? `${css.navLink} ${css.navLinkActive}` : css.navLink
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/catalog"
+            className={({ isActive }) =>
+              isActive ? `${css.navLink} ${css.navLinkActive}` : css.navLink
+            }
+          >
+            Catalog
+          </NavLink>
+        </nav>
+      </div>
+    </header>
   );
 };
 

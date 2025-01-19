@@ -1,16 +1,22 @@
-import { Oval } from "react-loader-spinner";
+import { Circles } from "react-loader-spinner";
 
 const Loader = () => {
   return (
-    <Oval
-      ariaLabel="oval-loading"
-      height={180}
-      width={180}
-      color="#475467"
-      secondaryColor="#D84343"
-      strokeWidth={4}
-      strokeWidthSecondary={4}
-    />
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <Circles
+        height="80"
+        width="80"
+        color="#3498db"
+        ariaLabel="loading-indicator"
+      />
+    </div>
   );
 };
 

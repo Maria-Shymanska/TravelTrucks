@@ -1,19 +1,22 @@
-import { Link } from "react-router-dom";
 import css from "./HomePage.module.css";
+import { Link } from "react-router-dom";
+import Button from "../../components/Button/Button.jsx";
 
 const HomePage = () => {
   return (
-    <section className={css.hero}>
-      <div className={css.textBox}>
-        <h1 className={css.title}>Campers of your dreams</h1>
-        <p className={css.text}>
-          You can find everything you want in our catalog
-        </p>
-        <Link to="/catalog" className={css.button}>
-          View Now
-        </Link>
+    <>
+      <div className={css.hero}>
+        <div className={css.title}>
+          <h1 className={css.title_main_text}>Campers of your dreams</h1>
+          <p className={css.title_text}>
+            You can find everything you want in our catalog
+          </p>
+          <Link to="/catalog">
+            <Button text="View Now" className={css.title_button} />
+          </Link>
+        </div>
       </div>
-    </section>
+    </>
   );
 };
 

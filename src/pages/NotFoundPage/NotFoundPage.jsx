@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import css from "./NotFoundPage.module.css";
 
-function NotFound() {
+const NotFoundPage = () => {
   return (
     <div className={css.container}>
       <h1 className={css.errorCode}>404</h1>
@@ -11,6 +11,6 @@ function NotFound() {
       </button>
     </div>
   );
-}
+};
 
-export default NotFound;
+export default NotFoundPage;

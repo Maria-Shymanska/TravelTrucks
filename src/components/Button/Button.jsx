@@ -1,14 +1,7 @@
-import css from "./Button.module.css";
-const Button = ({
-  name,
-  type = "button",
-  className = css.base,
-  disabled = false,
-  ...params
-}) => {
+const Button = ({ text, className, onClick, type }) => {
   return (
-    <button type={type} className={className} disabled={disabled} {...params}>
-      {name}
+    <button type={type || "button"} onClick={onClick} className={className}>
+      {text}
     </button>
   );
 };
