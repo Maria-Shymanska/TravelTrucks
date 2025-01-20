@@ -1,8 +1,19 @@
-# React + Vite
+# TravelTrucks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CamperQuest is a project designed to help you search for and book campervans for your travels, making your adventures comfortable and unforgettable.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before starting the project, ensure that your system meets the following requirements:
+
+- **Node.js** version `X.X.X` or newer
+- A package manager: **npm** or **yarn**
+
+---
+
+## Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/camperquest.git
+   ```
